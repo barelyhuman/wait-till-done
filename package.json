@@ -1,0 +1,46 @@
+{
+  "name": "wait-till-done",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "packageManager": "pnpm@8.12.0",
+  "scripts": {
+    "dev": "npm run build; run-p 'dev:runner' 'dev:compile'",
+    "dev:runner": "nodemon dist/server",
+    "dev:compile": "rollup -c -w",
+    "start": "node dist/server",
+    "build": "rollup -c",
+    "db:seed": "knex seed:run",
+    "db:latest": "knex migrate:latest",
+    "db:rollback": "knex migrate:rollback",
+    "db:reapply": "knex migrate:rollback;knex migrate:latest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@consumet/extensions": "^1.5.4",
+    "@koa/router": "^12.0.1",
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^9.3.0",
+    "goober": "^2.1.14",
+    "knex": "^3.1.0",
+    "koa": "^2.15.0",
+    "koa-bodyparser": "^4.4.1",
+    "koa-ratelimit": "^5.1.0",
+    "koa-static": "^5.0.0",
+    "redaxios": "^0.5.1",
+    "vhtml": "^2.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-sucrase": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/koa__router": "^12.0.4",
+    "@types/node": "^20.11.7",
+    "nodemon": "^3.0.3",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^4.9.6"
+  }
+}
