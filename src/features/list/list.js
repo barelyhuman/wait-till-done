@@ -1,11 +1,18 @@
 import { findAnimeById, getAnimeEpisodeCount } from "../../lib/anime.js";
 import { WatchlistModel } from "../../models/watchlist.js";
+import { animeExpired } from "./list.events.js";
 
 export async function getList() {
   return (await WatchlistModel.find((b) => b.where({}))).map((x) => {
     x.mal_id = Number(x.mal_id);
     x.episodes = Number(x.episodes);
-    x.completed = x.status.toLowerCase() === "finished airing";
+
+    // Today - 24 hours
+    const staleTime = new Date().getTime() - 24 * 60 * 60 * 1000;
+    if (x.last_scraped_at <= staleTime) {
+      animeExpired.next(x.mal_id);
+    }
+
     return x;
   });
 }
