@@ -6,7 +6,6 @@ const theme = {};
 export const styles = {
   button: css`
     background: transparent;
-    margin: 0px 10px;
     padding: 8px 16px;
     border-radius: 4px;
     border: 1px solid #868e96;
