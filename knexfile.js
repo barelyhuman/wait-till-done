@@ -19,7 +19,7 @@ export default {
   production: {
     client: "better-sqlite3",
     connection: {
-      filename: "/data/production.sqlite3",
+      filename: process.env.DATABASE_URL
     },
   },
 };
