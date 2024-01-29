@@ -12,11 +12,15 @@ export function Layout({ children, errors = [] }) {
         <link rel="stylesheet" href="/assets/styles.css"></link>
       </head>
       <body>
-        <div class="">
-          {errors.map((err) => (
-            <p class="">{err}</p>
-          ))}
-        </div>
+        {errors.length > 0 ? (
+          <div class="m-10 max-w-4xl mx-auto">
+            {errors.map((err) => (
+              <p class="border border-red-400 text-red-600 w-full rounded-md mb-10 px-4 py-2">
+                {err}
+              </p>
+            ))}
+          </div>
+        ) : null}
         {children}
       </body>
     </html>

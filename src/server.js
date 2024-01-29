@@ -5,15 +5,15 @@ import { dirname, join } from "path";
 import { bootFeatures } from "./features";
 import { secure } from "./security";
 import session from "koa-session";
-import flash from "koa-flash";
 import "./styles.css";
 import { fileURLToPath } from "url";
+import { flashMiddleware } from "./lib/flash.js";
 
 const app = new Koa();
 
 app.use(bodyParser());
-app.use(session(app));
-app.use(flash());
+app.use(session(app, { signed: false }));
+app.use(flashMiddleware());
 app.use(secure);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

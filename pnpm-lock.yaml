@@ -29,9 +29,6 @@ dependencies:
   koa-bodyparser:
     specifier: ^4.4.1
     version: 4.4.1
-  koa-flash:
-    specifier: ^1.0.0
-    version: 1.0.0
   koa-ratelimit:
     specifier: ^5.1.0
     version: 5.1.0
@@ -2064,10 +2061,6 @@ packages:
     dependencies:
       co: 4.6.0
       koa-compose: 4.1.0
-    dev: false
-
-  /koa-flash@1.0.0:
-    resolution: {integrity: sha512-UD1abRJv3yNMlq65CLTp848qgASLJJSl0DUTqdR59cfFTXaB/dMq9Z50nehrV/RfHg/tcyq7mQBG6rNl9nL0nw==}
     dev: false
 
   /koa-ratelimit@5.1.0:

@@ -11,7 +11,7 @@ router.post("/login", async (ctx) => {
   const payload = ctx.request.body;
 
   if (!payload.password) {
-    ctx.flash.error = `Cannot login without a password.`;
+    ctx.flash("error", `Cannot login without a password.`);
     ctx.status = 303;
     ctx.redirect("/");
     return;
@@ -21,7 +21,8 @@ router.post("/login", async (ctx) => {
   // need to go through anything else.
   const userDetails = await UserModel.findOne((b) => b.where({}));
   if (!userDetails) {
-    ctx.flash.error = `Cannot find user.`;
+    ctx.flash("error", `Cannot find user.`);
+
     ctx.status = 303;
     ctx.redirect("/");
     // TODO: throw error
@@ -34,7 +35,7 @@ router.post("/login", async (ctx) => {
   );
 
   if (!isValid) {
-    ctx.flash.error = `Invalid Credentials.`;
+    ctx.flash("error", `Invalid Credentials.`);
     // TODO: throw error
     ctx.status = 303;
     ctx.redirect("/");
@@ -50,7 +51,6 @@ router.post("/login", async (ctx) => {
     expires_at: new Date(expiry),
   });
 
-  ctx.flash.error = "";
   ctx.cookies.set("auth", token, {
     sameSite: "lax",
     domain: ctx.hostname || "localhost",

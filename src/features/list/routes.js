@@ -9,7 +9,7 @@ const router = new Router();
 router.get("/", loginStatus, async (ctx) => {
   const result = await getList();
   const isLoggedIn = ctx.isLoggedIn;
-  const errors = [].concat(ctx.flash.error);
+  const errors = ctx.flash("error");
 
   ctx.body = (
     <Layout errors={errors}>
