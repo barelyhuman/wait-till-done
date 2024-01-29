@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+    helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial,
+    sans-serif;
+  background: #f8f9fa;
+  color: #212529;
+}
+
+.input {
+  @apply w-full bg-transparent p-2 border border-gray-300 rounded-sm text-gray-600 outline-none;
+}
+
+.btn{
+  @apply bg-transparent py-2 px-4 rounded-sm border border-gray-400 text-gray-500 hover:border-gray-700 hover:text-gray-800 outline-none;
+}

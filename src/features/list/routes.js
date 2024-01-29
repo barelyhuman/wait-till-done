@@ -1,102 +1,56 @@
 // @jsx h
-import h from "vhtml";
 import Router from "@koa/router";
 import { Layout } from "../../components/layout.js";
+import { LoginForm } from "../../components/login-form.js";
+import { loginStatus } from "../../middleware/auth.js";
 import { getList, scrapeAnime } from "./list.js";
 const router = new Router();
-import { css } from "goober";
-import { styles } from "../../styles.js";
 
-router.get("/", async (ctx) => {
+router.get("/", loginStatus, async (ctx) => {
   const result = await getList();
+  const isLoggedIn = ctx.isLoggedIn;
+  const errors = [].concat(ctx.flash.error);
 
   ctx.body = (
-    <Layout>
-      <div className={styles.baseContainer}>
-        <form
-          method="post"
-          action="/scrape"
-          className={css`
-            display: flex;
-            align-items: center;
-            gap: 10px;
-          `}
-        >
-          <div
-            className={css`
-              flex: 1;
-              width: 100%;
-            `}
+    <Layout errors={errors}>
+      <div class="p-[1rem] text-md max-w-[900px] text-gray-600 mx-auto">
+        {isLoggedIn ? (
+          <form
+            method="post"
+            action="/scrape"
+            class="flex items-center gap-2 max-w-[50%] ml-auto"
           >
-            <input
-              type="text"
-              placeholder="MAL ID"
-              name="malId"
-              className={styles.textField}
-            />
-          </div>
-          <div>
-            <button className={styles.button}>Add</button>
-          </div>
-        </form>
+            <div class="flex-1 w-full">
+              <input
+                type="text"
+                placeholder="MAL ID"
+                name="malId"
+                class="input"
+              />
+            </div>
+            <div>
+              <button className="btn">Add</button>
+            </div>
+          </form>
+        ) : (
+          <LoginForm />
+        )}
 
-        <section
-          className={css`
-            margin-top: 100px;
-          `}
-        >
-          <ul
-            className={css`
-              margin: 0px;
-              padding: 0px;
-              list-style-type: none;
-              display: flex;
-              flex-direction: column;
-              gap: 10px;
-            `}
-          >
+        <section class="mt-44">
+          <ul class="m-0 p-0 flex flex-col gap-4">
             {result.map((x) => {
               return (
-                <li
-                  className={css`
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                  `}
-                >
-                  <p
-                    className={css`
-                      display: flex;
-                      gap: 8px;
-                      flex: 2;
-                    `}
-                  >
+                <li class="flex items-center justify-between">
+                  <p class="flex gap-4 flex-[2]">
                     <a
                       href={`https://myanimelist.net/anime/${x.mal_id}`}
-                      className={css`
-                        color: #868e96;
-                        text-decoration: none;
-
-                        &:hover {
-                          color: #212529;
-                          text-decoration: underline;
-                          text-underline-offset: 4px;
-                        }
-                      `}
+                      class="decoration-none text-right text-gray-400 hover:underline hover:text-gray-800 hover:underline-offset-4 w-14"
                     >
                       <span>#{x.mal_id}</span>
-                    </a>{" "}
+                    </a>
                     <span>{x.name}</span>
                   </p>
-                  <p
-                    className={css`
-                      display: flex;
-                      gap: 4px;
-                      color: #212529;
-                      font-weight: 600;
-                      font-size: 12px;
-                    `}
-                  >
+                  <p class="flex gap-1 font-bold text-sm">
                     {x.aired}/{x.episodes}
                   </p>
                 </li>

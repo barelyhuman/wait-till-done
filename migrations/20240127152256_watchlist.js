@@ -7,6 +7,7 @@ export const up = function (knex) {
     table.increments("id").unique().primary();
     table.text("is_active").notNullable().defaultTo(true);
     table.timestamps(true, true);
+
     table.string("mal_id").notNullable();
     table.string("name").notNullable();
     table.integer("aired").notNullable();

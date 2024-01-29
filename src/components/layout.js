@@ -1,9 +1,6 @@
 // @jsx h
-import h from "vhtml";
 
-import { extractCss } from "goober";
-
-export function Layout({ children }) {
+export function Layout({ children, errors = [] }) {
   return (
     <html>
       <head>
@@ -13,9 +10,15 @@ export function Layout({ children }) {
           crossorigin="anonymous"
         ></script>
         <link rel="stylesheet" href="/assets/styles.css"></link>
-        <style>{extractCss()}</style>
       </head>
-      <body>{children}</body>
+      <body>
+        <div class="">
+          {errors.map((err) => (
+            <p class="">{err}</p>
+          ))}
+        </div>
+        {children}
+      </body>
     </html>
   );
 }

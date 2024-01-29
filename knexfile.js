@@ -12,14 +12,14 @@ export default {
   staging: {
     client: "better-sqlite3",
     connection: {
-      filename: "./staging.sqlite3",
+      filename: "/data/staging.sqlite3",
     },
   },
 
   production: {
     client: "better-sqlite3",
     connection: {
-      filename: "./production.sqlite3",
+      filename: "/data/production.sqlite3",
     },
   },
 };

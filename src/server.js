@@ -1,20 +1,28 @@
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
 import serve from "koa-static";
-import { join } from "path";
+import { dirname, join } from "path";
 import { bootFeatures } from "./features";
 import { secure } from "./security";
-import { setup } from "goober";
-import h from "vhtml";
-
-setup(h);
+import session from "koa-session";
+import flash from "koa-flash";
+import "./styles.css";
+import { fileURLToPath } from "url";
 
 const app = new Koa();
 
 app.use(bodyParser());
+app.use(session(app));
+app.use(flash());
 app.use(secure);
 
-const root = join(process.cwd(), "src/public");
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const root = join(__dirname, "public");
+
+app.use(async (ctx, next) => {
+  ctx.errors = [];
+  await next();
+});
 
 app.use(async (ctx, next) => {
   if (ctx.url.startsWith("/assets")) {
@@ -27,7 +35,7 @@ app.use(async (ctx, next) => {
 // Feature Imports
 bootFeatures(app);
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);

@@ -9,7 +9,7 @@ function createConnectionFactory() {
       return connectInstance;
     }
     //@ts-ignore
-    const env = import.meta.env ? import.meta.env.NODE_ENV : "development";
+    const env = process.env.NODE_ENV || "development";
     const config = kConfig[env];
     connectInstance = knex(config);
     return connectInstance;

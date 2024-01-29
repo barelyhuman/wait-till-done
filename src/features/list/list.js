@@ -1,6 +1,6 @@
 import { findAnimeById, getAnimeEpisodeCount } from "../../lib/anime.js";
 import { WatchlistModel } from "../../models/watchlist.js";
-import { animeExpired } from "./list.events.js";
+import { animeExpired } from "./list.subjects.js";
 
 export async function getList() {
   return (await WatchlistModel.find((b) => b.where({}))).map((x) => {
