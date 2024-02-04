@@ -7,9 +7,9 @@ export async function getList() {
     x.mal_id = Number(x.mal_id);
     x.episodes = Number(x.episodes);
 
-    // Today - 5 minutes
     const staleTime = new Date().getTime() - 5 * 60 * 1000;
-    if (x.last_scraped_at <= staleTime) {
+
+    if (new Date(x.last_scraped_at).getTime() <= staleTime) {
       animeExpired.next(x.mal_id);
     }
 
