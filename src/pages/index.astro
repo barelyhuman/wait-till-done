@@ -1,0 +1,90 @@
+---
+const data = await fetch(
+  'http://ungh.cc/repos/barelyhuman/mal-sync/files/main/data/anime.json'
+).then(r => (r.ok ? r.json() : false))
+
+let list = []
+if (data) {
+  list = JSON.parse(data.file.contents).json.map(x => {
+    return Object.assign(x, x.value)
+  })
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>WTD</title>
+    <style>
+      :root {
+        /* grounds */
+        --bg: #fff;
+        --fg: #000;
+
+        /* grays */
+        --a0: #ddd;
+        --a1: #d3d3d3;
+        --a2: #bebebe;
+        --a3: #aaa;
+        --a4: #959595;
+        --a5: #818181;
+        --a6: #656565;
+        --a7: #494949;
+        --a8: #2d2d2d;
+        --a9: #111;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          /* grounds */
+          --bg: #000;
+          --fg: #fff;
+
+          /* grays */
+          --a0: #111;
+          --a1: #2d2d2d;
+          --a2: #494949;
+          --a3: #656565;
+          --a4: #818181;
+          --a5: #959595;
+          --a6: #aaa;
+          --a7: #bebebe;
+          --a8: #d3d3d3;
+          --a9: #ddd;
+        }
+      }
+
+      body {
+        @apply bg-base text-text;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="p-[1rem] text-md max-w-[900px] mx-auto">
+      <ul class="mt-10 p-0 flex flex-col gap-4">
+        {
+          list.map(item => {
+            return (
+              <li class="flex items-center justify-between">
+                <p class="flex gap-4 flex-[2]">
+                  <a
+                    href={`https://myanimelist.net/anime/${item.id}`}
+                    class="decoration-none text-right text-muted hover:underline hover:text-text hover:underline-offset-4 w-14"
+                  >
+                    <span>#{item.id}</span>
+                  </a>
+                  <span>{item.title}</span>
+                </p>
+                <p class="flex gap-1 font-bold text-sm">
+                  {item.episodes?.aired}/{item.episodes?.total}
+                </p>
+              </li>
+            )
+          })
+        }
+      </ul>
+    </div>
+  </body>
+</html>

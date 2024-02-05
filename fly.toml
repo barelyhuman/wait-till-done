@@ -6,18 +6,10 @@
 app = 'wtd'
 primary_region = 'sin'
 
-[experimental]
-  cmd = ['entrypoint.sh']
-  entrypoint = ['sh']
-
 [build]
 
-[[mounts]]
-  source = 'wtd_data'
-  destination = '/data'
-
 [http_service]
-  internal_port = 3000
+  internal_port = 4321
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
