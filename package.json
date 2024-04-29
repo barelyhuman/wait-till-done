@@ -1,0 +1,31 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "arctic": "^1.7.0",
+    "lucia": "^3.2.0",
+    "monaco-editor": "0.48.0",
+    "nuxt": "^3.11.2",
+    "nuxt-monaco-editor": "^1.2.9",
+    "oslo": "^1.2.0",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@barelyhuman/prettier-config": "^1.1.0",
+    "@unocss/nuxt": "^0.59.4",
+    "@unocss/preset-uno": "^0.59.4",
+    "@unocss/preset-web-fonts": "^0.59.4",
+    "@vue-email/nuxt": "^0.8.19",
+    "nuxt-paypal": "0.0.1-beta",
+    "prettier": "^3.2.5"
+  }
+}
