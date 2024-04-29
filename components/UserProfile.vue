@@ -38,6 +38,6 @@ async function logout() {
   await $fetch("/api/logout", {
     method: "POST",
   });
-  await navigateTo("/app");
+  window.location.pathname = "/app";
 }
 </script>

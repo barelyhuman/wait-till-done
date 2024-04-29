@@ -8,5 +8,3 @@ export default defineEventHandler(async (event) => {
 
   return dataInput.content as AnimeInputList;
 });
-
-

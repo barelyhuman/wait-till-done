@@ -9,7 +9,8 @@ export default defineEventHandler(async (event) => {
     const originHeader = getHeader(event, "Origin") ?? null;
     const hostHeader = getHeader(event, "Host") ?? null;
     if (
-      !originHeader || !hostHeader ||
+      !originHeader ||
+      !hostHeader ||
       !verifyRequestOrigin(originHeader, [hostHeader])
     ) {
       return event.node.res.writeHead(403).end();

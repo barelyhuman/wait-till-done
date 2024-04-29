@@ -19,8 +19,8 @@ export default defineNuxtConfig({
     },
     webFonts: {
       provider: "none",
-      "fonts": {
-        "sans": "Cal Sans",
+      fonts: {
+        sans: "Cal Sans",
       },
     },
   },

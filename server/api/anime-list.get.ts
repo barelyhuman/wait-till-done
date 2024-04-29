@@ -4,10 +4,7 @@ export default defineEventHandler(async (event) => {
 
   const headers: Headers = new Headers();
   if (token) {
-    headers.append(
-      "Authorization",
-      `Bearer ${token}`,
-    );
+    headers.append("Authorization", `Bearer ${token}`);
   }
 
   const data = await fetch(
