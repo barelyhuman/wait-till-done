@@ -4,7 +4,16 @@ const resolver = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["nuxt-monaco-editor", "@unocss/nuxt", "notivue/nuxt"],
+  modules: [
+    "nuxt-monaco-editor",
+    "@unocss/nuxt",
+    "notivue/nuxt",
+    ["@nuxtjs/google-fonts", {
+      families: {
+        Inter: [400, 700],
+      },
+    }],
+  ],
   css: ["notivue/notification.css", "notivue/animations.css"],
   unocss: {
     preflight: true,
@@ -19,9 +28,13 @@ export default defineNuxtConfig({
     webFonts: {
       provider: "none",
       fonts: {
-        sans: "Cal Sans",
+        sans: "Inter",
       },
     },
+  },
+  googleFonts: {
+    download: true,
+    inject: true,
   },
   nitro: {
     publicAssets: [

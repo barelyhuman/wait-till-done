@@ -1,6 +1,6 @@
 <template>
-  <UserProfile class="mb-10" />
   <div class="max-w-3xl mx-auto p-2">
+    <UserProfile class="mb-10" />
     <div class="flex items-center justify-end gap-2" v-if="user">
       <a href="/app/edit" class="text-sm btn">Edit</a>
     </div>
