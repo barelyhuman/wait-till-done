@@ -1,7 +1,7 @@
 import { OAuth2RequestError } from "arctic";
 import { generateIdFromEntropySize } from "lucia";
 import { lucia } from "~/server/utils/auth";
-import { github, inMemoryTokens } from "~/server/utils/providers/github";
+import { github } from "~/server/utils/providers/github";
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
@@ -16,8 +16,6 @@ export default defineEventHandler(async (event) => {
 
   try {
     const tokens = await github.validateAuthorizationCode(code);
-
-    inMemoryTokens.data = tokens;
 
     const githubUserResponse = await fetch("https://api.github.com/user", {
       headers: {

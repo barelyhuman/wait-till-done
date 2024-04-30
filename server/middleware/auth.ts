@@ -2,7 +2,6 @@ import { GitHubTokens } from "arctic";
 import { verifyRequestOrigin } from "lucia";
 
 import type { Session, User } from "lucia";
-import { inMemoryTokens } from "../utils/providers/github";
 
 export default defineEventHandler(async (event) => {
   if (event.method !== "GET") {
@@ -41,9 +40,6 @@ export default defineEventHandler(async (event) => {
   }
   event.context.session = session;
   event.context.user = user;
-  if (inMemoryTokens.data) {
-    event.context.githubTokens = inMemoryTokens.data;
-  }
 });
 
 declare module "h3" {

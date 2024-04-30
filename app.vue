@@ -1,9 +1,11 @@
 <template>
   <div class="font-sans min-h-screen h-full w-full p-2">
     <NuxtPage />
+    <Notivue v-slot="item">
+      <Notification :item="item" />
+    </Notivue>
   </div>
 </template>
-
 <style global>
 :root {
   --dark: #23283d;

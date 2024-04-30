@@ -1,12 +1,11 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-
 import { createResolver } from "nuxt/kit";
 
 const resolver = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["nuxt-monaco-editor", "@unocss/nuxt"],
+  modules: ["nuxt-monaco-editor", "@unocss/nuxt", "notivue/nuxt"],
+  css: ["notivue/notification.css", "notivue/animations.css"],
   unocss: {
     preflight: true,
     theme: {
@@ -34,7 +33,6 @@ export default defineNuxtConfig({
     ],
   },
   monacoEditor: {
-    // These are default values:
     locale: "en",
     componentName: {
       codeEditor: "MonacoEditor",

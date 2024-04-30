@@ -15,6 +15,7 @@
 
 <script lang="ts" setup>
 import { addAppThemes } from "@/lib/monaco/theme";
+import { push } from "notivue";
 
 const user = useUser();
 if (!user.value?.id) {
@@ -46,6 +47,7 @@ async function updateData() {
     }),
   });
   await fetchInput();
+  push.success("Updated");
 }
 
 let editorOptions: import("monaco-editor").editor.IStandaloneEditorConstructionOptions =

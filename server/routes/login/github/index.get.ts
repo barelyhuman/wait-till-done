@@ -4,7 +4,7 @@ import { github } from "~/server/utils/providers/github";
 export default defineEventHandler(async (event) => {
   const state = generateState();
   const url = await github.createAuthorizationURL(state, {
-    scopes: ["repo", "user"],
+    scopes: ["repo"],
   });
 
   setCookie(event, "github_oauth_state", state, {
